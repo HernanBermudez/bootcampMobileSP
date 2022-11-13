@@ -1,9 +1,10 @@
 import UIKit
 
+/// Structure with the getRandomString method
 struct RandomString {
-    let tipoA = "tipoa";
-    let tipoB = "tipob";
-    var randomNumbersString = "";
+    let tipoA = "tipoa"
+    let tipoB = "tipob"
+    var randomNumbersString = ""
     mutating func getRandomString(str: String) -> String{
         if str.lowercased() != tipoA && str.lowercased() != tipoB{
             print("Wrong input. Must be either TipoA or TipoB")
@@ -13,14 +14,12 @@ struct RandomString {
                 for _ in 1...8 {
                     randomNumbersString.append(String(Int.random(in: 1..<10)))
                 }
-                //print(randomNumbersString)
             }
             if str.lowercased() == tipoB {
                 randomNumbersString.append("08")
                 for _ in 1...8 {
                     randomNumbersString.append(String(Int.random(in: 1..<10)))
                 }
-                //print(randomNumbersString)
             }
         }
         let stringForReturn = randomNumbersString
@@ -29,17 +28,16 @@ struct RandomString {
     }
 }
 
- // Uncomment this lines for testing or use it as reference:
- // Instance of the structure RandomString:
+// Instance of the structure RandomString:
 var randomString = RandomString()
-print(randomString.getRandomString(str: "Tipoa"))
+// Testing the method with the two possible parameters:
+print(randomString.getRandomString(str: "TipoA"))
 print(randomString.getRandomString(str: "TipoB"))
 
 
-//
-/// This function sorts a given random string of integers into a sorted array of integers. Uses Insertion Sort Algorithm.
+/// This function sorts a given random string of integers into a sorted array of integers, smallest to largest or vice versa. Uses Insertion Sort Algorithm.
 /// - Parameters:
-///   - randomString: The random string that will be sorted. It can be used the method created above.
+///   - randomString: The random string that will be sorted. It can be used with the method created above.
 ///   - order: The order that the array will be sorted. "Asc" or "Desc".
 /// - Returns: Returns the sorted array.
 func sortingArray (randomString: String, order: String) -> Array<Int>{
@@ -59,7 +57,7 @@ func sortingArray (randomString: String, order: String) -> Array<Int>{
         print("Wrong input. Order must be Asc or Desc. Array not sorted:")
     } else {
         if order.lowercased() == "desc"{
-            for index in 0..<randomArray.count{
+            for index in 1..<randomArray.count{
                 let key = randomArray[index]
                 var i = index - 1
                 while (i >= 0 && randomArray[i] < key){
@@ -69,7 +67,7 @@ func sortingArray (randomString: String, order: String) -> Array<Int>{
                 randomArray[i+1] = key
             }
         } else {
-            for index in 0..<randomArray.count{
+            for index in 1..<randomArray.count{
                 let key = randomArray[index]
                 var i = index - 1
                 while (i >= 0 && randomArray[i] > key){
@@ -83,6 +81,8 @@ func sortingArray (randomString: String, order: String) -> Array<Int>{
     return randomArray
 }
 
-print(sortingArray(randomString: randomString.getRandomString(str: "TipoB"), order: "asc"))
-
-print(sortingArray(randomString: "12,3,2,4,94,32,64,103,242,15,0", order: "asc"))
+// Testing the function with the method of the first exercise
+// and with a new random string directly in the parameters.
+// Feel free to change the parameters according to the logic of the method and function.
+print(sortingArray(randomString: randomString.getRandomString(str: "TipoA"), order: "desc"))
+print(sortingArray(randomString: "12,3,2,4,94,32,64,1098,103,242,15,0,23", order: "asc"))
